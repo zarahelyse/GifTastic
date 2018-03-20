@@ -1,5 +1,3 @@
-//var btnState;
-//var dataState;
 var q;
 var limit = 10;
 var apiKey = "96q4xCDQ26HgzN3CHLgjM7oJuSUnYffu"
@@ -9,7 +7,7 @@ var topicTitle;
 
 
 
-var topics = ["Game Of Thrones", "Star Wars", "Lord of the Rings", "Marvel", ];
+var topics = ["Game of Thrones", "Lord of the Rings", "Star Wars", "Supernatural",];
 
 $(document).ready(function(){
     for(i = 0; i < topics.length; i++){
@@ -91,10 +89,17 @@ function queryAPI(){
                 'still-url': results[i].images.fixed_height_still.url,
                 'class': "gif"})
                
+          panelBody.prepend(resultImage)
+       
+
+        }
+
         $("#results").prepend(topicPanel);
         
     })
 }
+
+
 
 
 
