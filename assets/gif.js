@@ -85,14 +85,12 @@ function addTopic(){
         //update topics array
         topics.push(topicToAdd)
 
-        //update local storage with the topics array
-        updateLocalStorage("storedTopics", topics)
-
         // clean up
         $("#topic-input").val("")
+
+        $(queryAPI())
     }
 }
-
 
 
 function queryAPI(){
@@ -106,18 +104,18 @@ function queryAPI(){
         var results = response.data;
         
         var topicPanel = $('<div>').attr({'class': "panel panel-default topicPanel",'id': q})
-       // var panelTitle = q
+        var panelTitle = q
         var panelHeading = $('<div class="panel-heading">')
                             .text(topicTitle)
                             .appendTo(topicPanel)
         var panelBody = $('<div class="panel-body">')
                             .appendTo(topicPanel)
 
-     //   var resultDiv = $("<div>");
+       var resultDiv = $("<div>");
         for(var i = 0; i < results.length; i++){
             
             var p = $("<span>").text("Rating: " + results[i].rating)
-          //  var label = "Title: " + results[i].title + "  Rating: " + results[i].rating + "<br>"
+          var label = "Title: " + results[i].title + "  Rating: " + results[i].rating + "<br>"
             var resultImage = $("<img>");
             resultImage.attr({
                 'src': results[i].images.fixed_height_still.url, 
