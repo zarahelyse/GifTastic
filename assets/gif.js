@@ -56,6 +56,43 @@ $(document).ready(function(){
     
 })
 
+   // add topic button click event
+   $("#add-topic").on('click', function(){
+    addTopic();
+})
+
+// add topic on enter
+$('#topic-input').keypress(function(e){
+    var key = e.which;
+    if(key === 13){
+        addTopic();
+    }
+})
+
+// adds a topic button and saves it to the topics array
+function addTopic(){
+
+    // get the textbox value
+    var topicToAdd = $("#topic-input").val().trim();
+    
+    // if the textbox isn't empty, add a new btnTopic button
+    if(topicToAdd.length > 0){
+        $("<button>")
+        .attr({"class": "btn btn-primary btnTopic", "dataTopic": topicToAdd, "btnState": "inactive"})
+        .text(topicToAdd)
+        .appendTo("#categories")
+        
+        //update topics array
+        topics.push(topicToAdd)
+
+        //update local storage with the topics array
+        updateLocalStorage("storedTopics", topics)
+
+        // clean up
+        $("#topic-input").val("")
+    }
+}
+
 
 
 function queryAPI(){
@@ -98,8 +135,5 @@ function queryAPI(){
         
     })
 }
-
-
-
 
 
